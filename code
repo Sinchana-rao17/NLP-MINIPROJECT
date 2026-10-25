@@ -1,0 +1,45 @@
+!pip install langdetect
+from langdetect import detect, DetectorFactory
+
+# Make results consistent
+DetectorFactory.seed = 0
+
+# Supported language codes
+languages = {
+    "en": "English",
+    "kn": "Kannada",
+    "hi": "Hindi",
+    "ta": "Tamil",
+    "te": "Telugu",
+    "ml": "Malayalam",
+    "fr": "French",
+    "es": "Spanish",
+    "de": "German",
+    "ar": "Arabic",
+    "ur": "Urdu",
+    "bn": "Bengali",
+    "mr": "Marathi",
+    "gu": "Gujarati",
+    "pa": "Punjabi"
+}
+
+print("LANGUAGE IDENTIFICATION SYSTEM")
+print("--------------------------------")
+
+text = input("Enter a sentence: ")
+
+if not text.strip():
+    print("Please enter some text.")
+else:
+    try:
+        language_code = detect(text)
+        language_name = languages.get(
+            language_code, "Other supported language"
+        )
+
+        print("Input Text:", text)
+        print("Language Code:", language_code)
+        print("Detected Language:", language_name)
+
+    except Exception:
+        print("Unable to identify the language.")
